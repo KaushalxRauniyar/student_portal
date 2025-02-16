@@ -7,17 +7,15 @@ import pandas as pd
 app = Flask(__name__)
 CORS(app)
 
-# Load the combined pipeline (which already includes preprocessing and model)
 with open('model.pkl', 'rb') as f:
     pipeline = pickle.load(f)
 
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        # Parse the input data
+
         data = request.json
 
-        # Rename input keys to match training feature names
         column_mapping = {
             "AcademicPressure": "Academic Pressure",
             "WorkPressure": "Work Pressure",
@@ -26,10 +24,8 @@ def predict():
         }
         mapped_data = {column_mapping.get(key, key): value for key, value in data.items()}
 
-        # Convert input to DataFrame
         feature_df = pd.DataFrame([mapped_data])
 
-        # Directly use the pipeline for preprocessing and prediction
         prediction = pipeline.predict(feature_df)
 
         return jsonify({'depression_status': int(prediction[0])})
