@@ -1,0 +1,42 @@
+.homeescreen{
+   padding:30px ;
+   border: 2px solid black;
+   width: 105%;
+   height: 100vh;
+
+   .box{
+      margin-top: 10px;
+   }
+   
+.about-us{
+   margin: 30px;
+   margin-top: 20px;
+
+   .box{
+      margin-bottom: 20px;
+   }
+   
+.sect{
+   p{
+      margin-top: 4px;
+   }
+}
+.name{
+   color: #c222d1;
+}
+
+}
+
+.contact-us{
+   margin: 30px;
+   margin-top: 20px;
+
+.box{
+   margin-top: 10px;
+   margin-bottom: 20px;
+}
+
+}
+
+
+}

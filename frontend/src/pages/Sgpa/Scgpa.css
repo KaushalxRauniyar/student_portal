@@ -1,0 +1,39 @@
+.sgpa{
+    padding: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .sem{
+        margin-top:60px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        border-radius: 12px;
+        padding: 50px;
+        margin-left: -300px;
+
+        h3{
+            font-size: 20px;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+        select{
+            margin-top: 10px;
+            border: 1px solid black;
+            outline: none;
+            border-radius: 12px;
+            padding: 8px;
+            background: white;
+
+        }
+        button{
+            background-color: tomato;
+            padding: 8px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+        }
+    }
+}
