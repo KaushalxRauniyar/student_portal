@@ -4,7 +4,7 @@ import React from 'react'
 function Book() {
   return (
     <div>
-      book
+      book suggestions
     </div>
   )
 }
