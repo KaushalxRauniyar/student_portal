@@ -1,6 +1,5 @@
 import React from 'react'
 import './Home.css'
-import { Mail } from 'lucide-react'
 function Home() {
   return (
     <div className=' homeescreen bg-gradient-to-l from-gray-500 to-white overflow-auto w-screen h-screen '>
@@ -33,9 +32,9 @@ function Home() {
 <div className='text-center box '>
 <h1 className='text-2xl font-bold text-white'>Contact Us</h1> <br />
     
-   <p className='text-center text-red-400'>Mail: kaushalrauniyar1@gmail.com</p>
+   <p className='text-center text-red-400'>Mail: Team@gmail.com</p>
    
-<p className='text-red-400'>Phone: +918235914724</p>
+<p className='text-red-400'>Phone: +9999999999</p>
 
 </div>
 </div>
