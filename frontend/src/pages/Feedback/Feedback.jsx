@@ -1,20 +1,27 @@
 import React, { useState } from 'react';
 import './Feedback.css';
-
+import axios from 'axios'
 const Feedback = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [text, settext] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
-    if (!name || !email || !message) {
+    if (!name || !email || !text) {
       alert('Please fill out all fields.');
       return;
     }
+try{
+const {data}=await axios.post("http://localhost:3000/api/add",{name,email,text})
+console.log(data);
 
-    console.log({ name, email, message });
+}catch(error)
+{
+  console.log(error.message)
+}
+    
 
     setSubmitted(true);
   };
@@ -50,8 +57,8 @@ const Feedback = () => {
           <div>
             <label>Message:</label>
             <textarea
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              value={text}
+              onChange={(e) => settext(e.target.value)}
               required
             />
           </div>
