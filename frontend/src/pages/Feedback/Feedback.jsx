@@ -16,14 +16,17 @@ const Feedback = () => {
 try{
 const {data}=await axios.post("http://localhost:3000/api/add",{name,email,text})
 console.log(data);
-
+if(data.success)
+{
+  setSubmitted(true);
+}
 }catch(error)
 {
+  alert(error.message)
   console.log(error.message)
 }
     
 
-    setSubmitted(true);
   };
 
   return (
