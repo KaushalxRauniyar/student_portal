@@ -1,10 +1,9 @@
-
 import { Route, Routes } from 'react-router-dom'
 import Navbar from './Component/Navbar/Navbar'
 import Sidebar from './Component/Sidebar/Sidebar'
 import Home from './pages/Home/Home'
 import Profile from './pages/profile/Profile'
-import Section from './pages/Section'
+import ElectiveSuggestion from './pages/ElectiveSuggestion/ElectiveSuggestion'
 import Scgpa from './pages/Sgpa/Scgpa'
 import ImageRec from './pages/health/ImageRec'
 import Book from './pages/Books/Book'
@@ -33,7 +32,7 @@ function App() {
   <Routes>
 <Route path='' element={<Home/>}/>
 <Route path='/profile' element={<Profile/>}/>
-<Route path='/section' element={<Section/>}/>
+<Route path='/elective' element={<ElectiveSuggestion/>}/>
 <Route path='/scgpa' element={<Scgpa/>}/>
 <Route path='/scgpa/1' element={<One/>}/>
 <Route path='/scgpa/2' element={<Two/>}/>
