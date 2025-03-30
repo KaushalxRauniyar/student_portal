@@ -22,7 +22,6 @@ function Home() {
    <p><span className='name'>Student Mental Health Prediction: </span>  here you have to give some answer and see your mental health status</p>
    <p><span className='name'>Book Suggestion: </span>  As per Your Semester it will suugest you some elective books to study. </p>
    <p><span className='name'>Test: </span> You can test Your Knowledge of Your by giving test as per your semister.</p>
-   <p><span className='name'>Game: </span>  in this section you can play some game. Sometime relaxation is Important.</p>
    <p><span className='name'>FeedBack: </span>  Here you can give us some of Your important feedback regarding this website. </p>
    </div>
   </div>

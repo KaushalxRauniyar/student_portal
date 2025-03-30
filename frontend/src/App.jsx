@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import Navbar from './Component/Navbar/Navbar'
 import Sidebar from './Component/Sidebar/Sidebar'
 import Home from './pages/Home/Home'
@@ -18,19 +18,29 @@ import Five from './Component/SCGPA/Five'
 import Six from './Component/SCGPA/Six'
 import Seven from './Component/SCGPA/Seven'
 import Eight from './Component/SCGPA/Eight'
+import Login from './pages/Login/Login'
+import { useEffect, useState } from 'react'
 
 function App() {
- 
-
+ const navigate=useNavigate()
+ const [token,settoken]=useState(localStorage.getItem("token")||"")
+// useEffect(()=>{
+//   if(token)
+//     {
+//         navigate('')
+//     }
+// },[token])
   return (
    <div className=''>
+    {
+      token?
+      <>
    <Navbar/>
-
    <div className='flex w-full overflow-hidden'>
 <Sidebar/>
 <div className=' w-[80%] mx-auto my-8 ml-[max(5vw,25px)]   text-base'>
   <Routes>
-<Route path='' element={<Home/>}/>
+<Route path='' element={token?<Home/>:<Login/>}/>
 <Route path='/profile' element={<Profile/>}/>
 <Route path='/elective' element={<ElectiveSuggestion/>}/>
 <Route path='/scgpa' element={<Scgpa/>}/>
@@ -50,6 +60,17 @@ function App() {
   </Routes>
 </div>
    </div>
+   </>
+:
+<>
+<Routes>
+  <Route path='*' element={<Login/>}/>
+</Routes>
+
+</>
+}
+
+
    </div>
   )
 }

@@ -27,9 +27,7 @@ function Sidebar() {
             <NavLink className='bg-white navv' to='/test'>
               <TestTube2/> Test
             </NavLink>
-            <NavLink className='bg-white navv' to='/game'>
-               <Gamepad/> Game
-            </NavLink>
+           
             <NavLink className='bg-white navv' to='/feedback'>
                <BookAIcon/> Feedback
             </NavLink>

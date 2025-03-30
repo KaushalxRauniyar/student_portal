@@ -8,12 +8,13 @@
   
     .logo{
       width: 150px;
-      height: 80px;
+      height: 100px;
       margin-bottom: 15px;
       padding: 15px;
       border-radius: 22px;
       margin-top: 10px;
       background-size: cover;
+      background-position: center;
     }
   .center{
     p{
