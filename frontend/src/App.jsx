@@ -20,6 +20,7 @@ import Seven from "./Component/SCGPA/Seven";
 import Eight from "./Component/SCGPA/Eight";
 import Login from "./pages/Login/Login";
 import { useEffect, useState } from "react";
+import GradePrediction from "./pages/GradePrediction/GradePrediction";
 
 function App() {
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ function App() {
                 <Route path="" element={token ? <Home /> : <Login />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/elective" element={<ElectiveSuggestion />} />
+                <Route path="/grade-prediction" element={<GradePrediction />} />
                 <Route path="/scgpa" element={<Scgpa />} />
                 <Route path="/scgpa/1" element={<One />} />
                 <Route path="/scgpa/2" element={<Two />} />
