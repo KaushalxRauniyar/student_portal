@@ -68,20 +68,13 @@ h1{
 
 }
 
-.box2 {
-   display: grid;
-   grid-template-columns: repeat(3, 1fr);
-   grid-template-rows: repeat(3, auto); 
-   gap: 10px; 
-   margin-right: 200px;
-   margin-top: 20px;
- }
  
  .box2 {
    display: grid;
    grid-template-columns: repeat(4, 1fr);
    gap: 10px;
-
+   margin-right: 200px;
+   margin-top: 20px;
  }
  
  .box3 {
@@ -114,7 +107,7 @@ background-color: black;
 color: white;
 margin-right: 200px;
 border-radius: 12px;
-
+margin-top: 20px;
 
 
 }
