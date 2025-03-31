@@ -40,7 +40,7 @@ const Sidebar = () => {
     },
     { path: "/sgpa", icon: <FaCalculator />, label: "SGPA Calculator" },
     { path: "/health", icon: <FaHeartbeat />, label: "Health Status" },
-    { path: "/books", icon: <FaBook />, label: "Book Suggestion" },
+    { path: "/book", icon: <FaBook />, label: "Book Suggestion" },
     { path: "/test", icon: <FaGamepad />, label: "Test" },
     { path: "/feedback", icon: <FaComments />, label: "Feedback" },
   ];

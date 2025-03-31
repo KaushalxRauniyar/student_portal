@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { FaChartLine, FaArrowRight } from "react-icons/fa";
 import "./GradePrediction.css";
@@ -35,7 +35,7 @@ const GradePrediction = () => {
 
   const getRequiredFields = () => {
     const filledFields = Object.entries(formData)
-      .filter(([_, value]) => value !== "")
+      .filter(([, value]) => value !== "")
       .map(([key]) => key);
 
     if (filledFields.length === 0) return ["10th", "12th"];
@@ -66,10 +66,9 @@ const GradePrediction = () => {
     setError(null);
 
     try {
-      // Filter out empty values
       const dataToSend = Object.fromEntries(
         Object.entries(formData)
-          .filter(([_, value]) => value !== "")
+          .filter(([, value]) => value !== "")
           .map(([key, value]) => [key, parseFloat(value)])
       );
 
@@ -88,6 +87,13 @@ const GradePrediction = () => {
 
   const requiredFields = getRequiredFields();
 
+  const getLabelText = (semester) => {
+    if (semester === "10th" || semester === "12th") {
+      return `${semester} Grade`;
+    }
+    return `${semester} Semester SGPA`;
+  };
+
   return (
     <div className="grade-prediction-container">
       <div className="grade-prediction-header">
@@ -95,7 +101,9 @@ const GradePrediction = () => {
           <FaChartLine />
         </div>
         <h2>Grade Prediction</h2>
-        <p>Predict your next semester's grade based on your academic history</p>
+        <p>
+          Predict your next semester&apos;s grade based on your academic history
+        </p>
       </div>
 
       <form onSubmit={handleSubmit} className="grade-prediction-form">
@@ -108,7 +116,7 @@ const GradePrediction = () => {
               }`}
             >
               <label htmlFor={semester}>
-                {semester} Semester SGPA
+                {getLabelText(semester)}
                 {requiredFields.includes(semester) && (
                   <span className="required-mark">*</span>
                 )}
@@ -119,7 +127,7 @@ const GradePrediction = () => {
                 name={semester}
                 value={formData[semester]}
                 onChange={handleInputChange}
-                placeholder="Enter SGPA"
+                placeholder="Enter grade"
                 className="grade-input"
                 required={requiredFields.includes(semester)}
               />

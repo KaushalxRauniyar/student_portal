@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import DomainSearch from './DomainSearch';
-import QuizStart from './QuizStart';
-import QuizQuestion from './QuizQuestion';
-import QuizResult from './QuizResult';
-import './Test.css';
-import { Shuffle } from 'lucide-react';
+import React, { useState } from "react";
+import DomainSearch from "./DomainSearch";
+import QuizStart from "./QuizStart";
+import QuizQuestion from "./QuizQuestion";
+import QuizResult from "./QuizResult";
+import "./Test.css";
+import { Shuffle } from "lucide-react";
 
 function shuffleArray(array) {
   const newArray = [...array]; // Create a copy of the array
@@ -15,11 +15,36 @@ function shuffleArray(array) {
   return newArray;
 }
 
-const AVAILABLE_DOMAINS = ['React', 'DBMS', 'AI', 'Machine Learning', 'Computer Networks', 'Java', 'Software Engineering', 'Operating System', 'Design and Analysis of Algorithms', 'Data Structures and Algorithms', 'Cloud Computing', 'C Programming', 'C++ Programming', 'Python Programming', 'JavaScript Programming', 'HTML and CSS', 'Web Development', 'Angular Development', 'Automata and Formal Language', 'High-Performance Computing (HPC)', 'Data Mining and Data Warehousing', 'TypeScript Programming', 'Node.js Programming', 'Object-Oriented Programming (OOP)', 'Advanced Mathematics'];
-
+const AVAILABLE_DOMAINS = [
+  "React",
+  "DBMS",
+  "AI",
+  "Machine Learning",
+  "Computer Networks",
+  "Java",
+  "Software Engineering",
+  "Operating System",
+  "Design and Analysis of Algorithms",
+  "Data Structures and Algorithms",
+  "Cloud Computing",
+  "C Programming",
+  "C++ Programming",
+  "Python Programming",
+  "JavaScript Programming",
+  "HTML and CSS",
+  "Web Development",
+  "Angular Development",
+  "Automata and Formal Language",
+  "High-Performance Computing (HPC)",
+  "Data Mining and Data Warehousing",
+  "TypeScript Programming",
+  "Node.js Programming",
+  "Object-Oriented Programming (OOP)",
+  "Advanced Mathematics",
+];
 
 function Test() {
-  const [selectedDomain, setSelectedDomain] = useState('');
+  const [selectedDomain, setSelectedDomain] = useState("");
   const [quizData, setQuizData] = useState(null);
   const [quizStarted, setQuizStarted] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -36,23 +61,25 @@ function Test() {
       setLoading(true);
       setError(null);
       setSelectedDomain(domain);
-      const response = await fetch(`https://backend-r6wa.onrender.com/quizs/${encodeURIComponent(domain)}`);
-      
+      const response = await fetch(
+        `https://backend-r6wa.onrender.com/quizs/${encodeURIComponent(domain)}`
+      );
+
       if (!response.ok) {
-        throw new Error('Failed to fetch quiz questions');
+        throw new Error("Failed to fetch quiz questions");
       }
 
       const data = await response.json();
-      
-      // Shuffle both questions and options for each question
-      const shuffledQuestions = shuffleArray(data.questions).map(question => ({
-        ...question,
-        options: shuffleArray(question.options),
-        // Store the correct answer based on the shuffled options
-        answerIndex: question.options.indexOf(question.options[question.answerIndex])
-      }));
 
-      setQuizData({ ...data, questions: shuffledQuestions });
+      // Shuffle both questions and options for each question
+      // const shuffledQuestions = shuffleArray(data.questions).map(question => ({
+      //   ...question,
+      //   // options: shuffleArray(question.options),
+      //   // Store the correct answer based on the shuffled options
+      //   answerIndex: question.options.indexOf(question.options[question.answerIndex])
+      // }));
+
+      setQuizData({ ...data, questions: data.questions });
       setUserAnswers(new Array(data.questions.length).fill(null));
     } catch (err) {
       setError(err.message);
@@ -70,20 +97,20 @@ function Test() {
 
   const handleAnswer = (answerIndex) => {
     if (isAnswerLocked) return;
-    
+
     setIsAnswerLocked(true);
     const newAnswers = [...userAnswers];
     newAnswers[currentQuestion] = answerIndex;
     setUserAnswers(newAnswers);
 
     if (answerIndex === quizData.questions[currentQuestion].answerIndex) {
-      setScore(prevScore => prevScore + 1);
+      setScore((prevScore) => prevScore + 1);
     }
 
     // Wait for 1.5 seconds before moving to next question
     setTimeout(() => {
       if (currentQuestion < quizData.questions.length - 1) {
-        setCurrentQuestion(prev => prev + 1);
+        setCurrentQuestion((prev) => prev + 1);
       } else {
         setShowResult(true);
       }
@@ -112,17 +139,19 @@ function Test() {
       <div className="test-page">
         <div className="test-content">
           <h1>Quiz Section</h1>
-          
+
           {!quizStarted && !showResult && (
             <>
-              <DomainSearch 
+              <DomainSearch
                 availableDomains={AVAILABLE_DOMAINS}
                 onSelect={handleDomainSelect}
               />
-              
-              {loading && <div className="loading">Loading quiz questions...</div>}
+
+              {loading && (
+                <div className="loading">Loading quiz questions...</div>
+              )}
               {error && <div className="error">{error}</div>}
-              
+
               {quizData && (
                 <QuizStart
                   domain={selectedDomain}
@@ -149,8 +178,18 @@ function Test() {
             <div className="review-container">
               <div className="review-header">
                 <button className="back-button" onClick={restartQuiz}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
                   </svg>
                   Back to Domains
                 </button>
@@ -187,4 +226,4 @@ function Test() {
   );
 }
 
-export default Test; 
+export default Test;
