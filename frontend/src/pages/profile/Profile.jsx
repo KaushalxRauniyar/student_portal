@@ -10,7 +10,6 @@ const  [user,setuser]=useState([])
   const handlesubmit=async()=>{
     try{
 const response=await axios.post(`https://ddos.erucix.workers.dev/?roll=${roll}`)
-console.log(response.data);
 setuser(response.data)
     }catch(error)
     {
@@ -18,12 +17,11 @@ setuser(response.data)
       
     }
   }
-  console.log(user);
   
 
 
   return (
-    <div className='profile h-full bg-gradient-to-t from-red-200 to-blue-300 w-screen'>
+    <div className='profile h-full bg-[#161748] w-screen'>
      <div  className="box flex justify-center items-center ">
 <div className='container bg-gradient-to-b from-white to-gray-300 w-[40%] h-full flex flex-col justify-center items-center ' >
       <h1 className=' hi text-xl font-bold shadow-md text-amber-950'>Search Student Details</h1>

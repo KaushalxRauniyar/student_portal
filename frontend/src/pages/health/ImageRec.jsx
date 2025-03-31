@@ -31,7 +31,7 @@ const ImageRec = () => {
 
 
   return (
-    <div className='healthh bg-gradient-to-l from-red-200 to-blue-300 h-screen w-screen'>
+    <div className='healthh bg-[#091f36] h-screen w-screen'>
       <div className='container'>
         <form onSubmit={handleSubmit}>
           <div>

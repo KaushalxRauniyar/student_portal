@@ -1,44 +1,96 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Home.css'
+import axios from 'axios'
+import { Book, HomeIcon } from 'lucide-react'
 function Home() {
-  return (
-    <div className=' homeescreen bg-gradient-to-l from-gray-500 to-white overflow-auto w-screen h-screen '>
-<div className='flex flex-col justify-center  bg-[#5F6FFF] rounded-2xl'>
-  <div className='box text-center mt-1'>
-  <h1  className='text-white font-bold text-2xl'>Welcome to Student Portal</h1>
-      </div>
-  <div className='text-center text-white'>
-    Your feature is bright
-  </div>
-{/* about us section */}
-<div className='about-us bg-black rounded-2xl'>
-  <div className='box text-center text-white'>
-   <h1 className='text-2xl text-white font-bold'> About us</h1>
-   <p>This is our Minor project. Here you have different sections to explore.</p>
-   <div className=' sect text-[15px] text-green-400'>
-   <p> <span className='name'>Profile: </span>  Here You Can search Anyone's Details using their roll Number.</p>
-   <p><span className='name'>Section selecton: </span>   This content is made using AI&ML . here  using ml technology it suggest you to choose your elective.</p>
-   <p> <span className='name'>SCGPA Calculator: </span>  Your Can Calculate Your SCGPA for respective Semester.</p>
-   <p><span className='name'>Student Mental Health Prediction: </span>  here you have to give some answer and see your mental health status</p>
-   <p><span className='name'>Book Suggestion: </span>  As per Your Semester it will suugest you some elective books to study. </p>
-   <p><span className='name'>Test: </span> You can test Your Knowledge of Your by giving test as per your semister.</p>
-   <p><span className='name'>FeedBack: </span>  Here you can give us some of Your important feedback regarding this website. </p>
-   </div>
-  </div>
 
-</div>
-<div className='contact-us bg-black rounded-2xl'>
-<div className='text-center box '>
-<h1 className='text-2xl font-bold text-white'>Contact Us</h1> <br />
+const [user,setuser]=useState({})
+const token=localStorage.getItem("token")
+const getdetail=async()=>{
+  try{
+const {data}=await axios.post("http://localhost:3000/api/user/detail",{token})
+if(data.success)
+{
+  setuser(data.user)
+}else{
+  alert(data.message)
+}
+
+  }catch(error)
+  {
+    alert(error.message);
     
-   <p className='text-center text-red-400'>Mail: Team@gmail.com</p>
-   
-<p className='text-red-400'>Phone: +9999999999</p>
+  }
+}
 
+
+useEffect(()=>{
+  if(token){
+    getdetail()
+  }
+},[token])
+
+
+
+
+  return (
+   <div className='homeScreen bg-[#393f4d] h-screen w-screen'>
+    <div className='box1 flex gap-8 text-white justify-center bg-gradient-to-r from-blue-500 to-pink-500 '>
+<div>
+<img src={user.image} height={70} width={80} alt="" />
 </div>
-</div>
+<div>
+  <h1>Welcome back,<span className='text-black'>  {user.name}!</span></h1>
+  <p className='text-gray-700 text-s font-bold'>Your one-stop student portal is ready to empower your academic journey. What would you like to explore today?</p>
 </div>
     </div>
+    <div className="box2">
+  <div className="box3">
+    <div className="half1 bg-blue-500"><h1>  Home Section</h1></div>
+    <div className="half2 bg-black">See Details of This Site</div>
+  </div>
+  <div className="box3">
+    <div className="half1 bg-violet-600">Profile Finder</div>
+    <div className="half2 bg-black">Details of KIIT Students</div>
+  </div>
+  <div className="box3">
+    <div className="half1 bg-green-500">Elective Suggestion</div>
+    <div className="half2">Suggest You Best Elective</div>
+  </div>
+  <div className="box3">
+    <div className="half1 bg-amber-700">Grade Genius</div>
+    <div className="half2">Calculate your SCGPA Here</div>
+  </div>
+  <div className="box3">
+    <div className="half1 bg-sky-700">Mental Health Checker</div>
+    <div className="half2">Checks Your Depression Level</div>
+  </div>
+  <div className="box3">
+    <div className="half1 bg-purple-600">Book Suggestion</div>
+    <div className="half2">Suggest Book of different Field</div>
+  </div>
+  <div className="box3">
+    <div className="half1 bg-indigo-600">Test</div>
+    <div className="half2">Evaluate Your Knowledge</div>
+  </div>
+  <div className="box3">
+    <div className="half1 bg-cyan-500">Feedback</div>
+    <div className="half2">Improve Us, Suggest US</div>
+  </div>
+</div>
+
+<div className='foot-box flex justify-between'>
+  <div className='left'>
+<h1>@EduGuide Hub . All Rights Reserved</h1>
+  </div>
+  <div className='right flex gap-8'>
+<h1 className='cursor-pointer'>Policy Privacy</h1>
+<h1 className='cursor-pointer'>Terms Of Service</h1>
+  </div>
+</div>
+
+
+   </div>
   )
 }
 
