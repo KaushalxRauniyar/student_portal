@@ -205,7 +205,7 @@ const ElectiveSuggestion = () => {
               <div key={rec.course_id} className="recommendation-card">
                 <div className="recommendation-header">
                   <h4 className="course-title">{rec.title}</h4>
-                  <span className="match-score">{rec.match_score}% Match</span>
+                  {/* <span className="match-score">{rec.match_score}% Match</span> */}
                 </div>
                 <p className="course-description">{rec.description}</p>
                 <p className="course-explanation">{rec.explanation}</p>
