@@ -23,7 +23,7 @@ import { useEffect, useState } from 'react'
 
 function App() {
  const navigate=useNavigate()
- const [token,settoken]=useState(localStorage.getItem("token")||"")
+ const [token,settoken]=useState(localStorage.getItem("token")||"Nistha")
 // useEffect(()=>{
 //   if(token)
 //     {
