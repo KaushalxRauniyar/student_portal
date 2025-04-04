@@ -45,10 +45,7 @@ useEffect(()=>{
 </div>
     </div>
     <div className="box2">
-  <div className="box3">
-    <div className="half1 bg-blue-500"><h1>  Home Section</h1></div>
-    <div className="half2 bg-black">See Details of This Site</div>
-  </div>
+ 
   <div className="box3">
     <div className="half1 bg-violet-600">Profile Finder</div>
     <div className="half2 bg-black">Details of KIIT Students</div>
@@ -56,6 +53,10 @@ useEffect(()=>{
   <div className="box3">
     <div className="half1 bg-green-500">Elective Suggestion</div>
     <div className="half2">Suggest You Best Elective</div>
+  </div>
+  <div className="box3">
+    <div className="half1 bg-blue-500"><h1>Grade Predictor</h1></div>
+    <div className="half2 bg-black">Predict upcoming sem Grade</div>
   </div>
   <div className="box3">
     <div className="half1 bg-amber-700">Grade Genius</div>

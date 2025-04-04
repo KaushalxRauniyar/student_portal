@@ -1,153 +1,74 @@
-import React, { useState } from 'react';
-import './ElectiveSuggestion.css';
-import { FaArrowRight } from 'react-icons/fa';
-import SuggestionCard from './SuggestionCard';
+import React, { useState } from "react";
+import axios from "axios";
+import { FaGraduationCap, FaCode, FaHeart, FaBriefcase } from "react-icons/fa";
+import PropTypes from "prop-types";
+import "./ElectiveSuggestion.css";
 
 const ElectiveSuggestion = () => {
-  // Predefined courses from backend
-  const predefinedCourses = [
-    "Data Structures",
-    "Database Management",
-    "Operating Systems",
-    "Computer Networks",
-    "Machine Learning",
-    "Web Development",
-    "Cybersecurity",
-    "Software Engineering",
-    "Data Mining and Data Warehousing",
-    "Data Science and Machine Learning",
-    "Deep Learning and Neural Networks",
-    "Digital Forensics",
-    "Digital Marketing and Analytics",
-    "Distributed Computing",
-    "Edge Computing",
-    "Embedded Systems",
-    "Ethical Hacking",
-    "Evolutionary Computation",
-    "Fuzzy Logic and Soft Computing",
-    "Game Development and Design",
-    "Geographic Information Systems",
-    "Green Computing",
-    "High-Performance Computing",
-    "Human-Centered AI",
-    "Humanoid Robotics",
-    "Image Processing and Pattern Recognition",
-    "Immersive Technologies",
-    "Information and Web Security",
-    "Next-Generation Wireless Networks",
-    "Parallel and Distributed Systems",
-    "Post-Quantum Cryptography",
-    "Quantum Computing",
-    "Recommender Systems",
-    "Robotics and Intelligent Systems",
-    "Security in IoT",
-    "Self-Adaptive Software Systems",
-    "Semantic Web and Ontology Engineering",
-    "Sensor Networks and Pervasive Computing",
-    "Social Network Analysis",
-    "Software Defined Networking",
-    "Software Testing and Quality Assurance",
-    "Speech and Audio Processing",
-    "Swarm Intelligence",
-    "Trust and Privacy in AI",
-    "Ubiquitous Computing",
-    "Vehicular Ad Hoc Networks",
-    "Virtual Reality and Augmented Reality",
-    "Wearable Computing",
-    "Web 3.0 and Decentralized Applications",
-    "Wireless Sensor Networks and IoT Security",
-    "Artificial Intelligence Ethics and Regulations",
-    "Bio-Medical Data Processing",
-    "Computational Advertising",
-    "Computational Finance",
-    "Computational Geometry",
-    "Cyber Threat Intelligence",
-    "Data Visualization and Storytelling",
-    "Explainable AI",
-    "Fog Computing",
-    "Genetic Algorithms",
-    "Graph Theory in Computer Science",
-    "Haptics and Human-Computer Interaction",
-    "Intelligent Transportation Systems",
-    "Internet Law and Cyber Regulations",
-    "Knowledge Engineering",
-    "Malware Analysis",
-    "Mobile and Wireless Security",
-    "Multimodal Interaction Systems",
-    "Neuro-Symbolic AI",
-    "Privacy-Preserving Computing",
-    "Software Reengineering",
-    "Smart Contracts and Cryptoeconomics",
-    "Software Reliability",
-    "Surveillance Technologies",
-    "Synthetic Data Generation",
-    "Traffic Analysis in Cybersecurity",
-    "Web Personalization",
-    "Zero Trust Security"
-  ];
-
   const [formData, setFormData] = useState({
     selected_courses: [],
     skills: [],
-    area_of_interest: [],
-    future_career_paths: []
+    interests: [],
+    career_goals: [],
   });
 
-  const [suggestions, setSuggestions] = useState(null);
+  const [recommendations, setRecommendations] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const options = {
-    skills: [
-      'Programming',
-      'Data Analysis',
-      'Machine Learning',
-      'Web Development',
-      'Database Management',
-      'Cybersecurity',
-      'Cloud Computing',
-      'DevOps',
-      'UI/UX Design',
-      'Mobile Development',
-      'Ethics',
-      'AI',
-      'Policy'
-    ],
-    interests: [
-      'Artificial Intelligence',
-      'Data Science',
-      'Software Development',
-      'Cybersecurity',
-      'Cloud Computing',
-      'Mobile Development',
-      'Game Development',
-      'Blockchain',
-      'IoT',
-      'Robotics',
-      'AI Ethics',
-      'Responsible AI'
-    ],
-    careers: [
-      'Software Engineer',
-      'Data Scientist',
-      'AI/ML Engineer',
-      'DevOps Engineer',
-      'Cybersecurity Analyst',
-      'Cloud Architect',
-      'Full Stack Developer',
-      'Mobile Developer',
-      'UI/UX Designer',
-      'Blockchain Developer',
-      'AI Ethicist',
-      'Policy Analyst'
-    ]
-  };
+  // Predefined options
+  const courseOptions = [
+    "Data Structures",
+    "Machine Learning",
+    "Web Development",
+    "Computer Networks",
+    "Database Management",
+    "Operating Systems",
+    "Software Engineering",
+    "Cloud Computing",
+  ];
 
-  const handleMultiSelectChange = (e, field) => {
-    const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
-    setFormData(prev => ({
+  const skillOptions = [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Python",
+    "Java",
+    "SQL",
+    "React",
+    "Node.js",
+    "Git",
+    "Docker",
+  ];
+
+  const interestOptions = [
+    "artificial intelligence",
+    "web development",
+    "mobile development",
+    "data science",
+    "cybersecurity",
+    "cloud computing",
+    "blockchain",
+    "game development",
+  ];
+
+  const careerOptions = [
+    "software engineer",
+    "web developer",
+    "data scientist",
+    "mobile developer",
+    "cloud architect",
+    "security engineer",
+    "devops engineer",
+    "full stack developer",
+  ];
+
+  const handleSelect = (category, value) => {
+    setFormData((prev) => ({
       ...prev,
-      [field]: selectedOptions
+      [category]: prev[category].includes(value)
+        ? prev[category].filter((item) => item !== value)
+        : [...prev[category], value],
     }));
   };
 
@@ -157,154 +78,151 @@ const ElectiveSuggestion = () => {
     setError(null);
 
     try {
-      const requestData = {
-        selected_courses: formData.selected_courses,
-        skills: formData.skills.map(skill => skill.toLowerCase()),
-        area_of_interest: formData.area_of_interest.map(interest => interest.toLowerCase()),
-        future_career_paths: formData.future_career_paths.map(career => career.toLowerCase())
-      };
-
-      console.log('Request Data:', requestData);
-
-      const response = await fetch('http://localhost:5000/api/recommend', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(requestData)
-      });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('Error Response:', errorText);
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log('Response Data:', data);
-      setSuggestions(data || null);
+      const response = await axios.post(
+        "https://recommendation-engine-l7cl.onrender.com/api/recommend",
+        formData
+      );
+      setRecommendations(response.data);
     } catch (err) {
-      console.error('Error:', err);
-      setError('Failed to get recommendations. Please try again.');
+      setError("Failed to get recommendations. Please try again.");
+      console.error(err);
     } finally {
       setLoading(false);
     }
   };
 
+  const SelectSection = ({ title, options, selected, category, icon }) => (
+    <div className="section-container">
+      <div className="section-header">
+        <div className="section-icon">{icon}</div>
+        <h3 className="section-title">{title}</h3>
+      </div>
+      <div className="options-grid">
+        {options.map((option) => (
+          <button
+            key={option}
+            onClick={() => handleSelect(category, option)}
+            className={`option-button ${
+              selected.includes(option) ? "selected" : ""
+            }`}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+
+  SelectSection.propTypes = {
+    title: PropTypes.string.isRequired,
+    options: PropTypes.arrayOf(PropTypes.string).isRequired,
+    selected: PropTypes.arrayOf(PropTypes.string).isRequired,
+    category: PropTypes.string.isRequired,
+    icon: PropTypes.element.isRequired,
+  };
+
   return (
     <div className="elective-container">
-      <div className="elective-page">
-        <div className="elective-content">
-          <h1>Elective Course Suggestions</h1>
+      <div className="elective-header">
+        <h2>Elective Course Recommendation</h2>
+        <p>
+          Select your preferences to get personalized course recommendations
+        </p>
+      </div>
 
-          <form onSubmit={handleSubmit} className="elective-form">
-            <div className="form-group">
-              <label htmlFor="selected_courses">Previously Completed Courses</label>
-              <select
-                id="selected_courses"
-                multiple
-                value={formData.selected_courses}
-                onChange={(e) => handleMultiSelectChange(e, 'selected_courses')}
-                className="multi-select"
-                required
-              >
-                {predefinedCourses.map(course => (
-                  <option key={course} value={course}>
-                    {course}
-                  </option>
-                ))}
-              </select>
-              <small className="text-gray-500">Hold Ctrl/Cmd to select multiple courses</small>
+      <form onSubmit={handleSubmit}>
+        <SelectSection
+          title="Selected Courses"
+          options={courseOptions}
+          selected={formData.selected_courses}
+          category="selected_courses"
+          icon={<FaGraduationCap />}
+        />
+
+        <SelectSection
+          title="Skills"
+          options={skillOptions}
+          selected={formData.skills}
+          category="skills"
+          icon={<FaCode />}
+        />
+
+        <SelectSection
+          title="Interests"
+          options={interestOptions}
+          selected={formData.interests}
+          category="interests"
+          icon={<FaHeart />}
+        />
+
+        <SelectSection
+          title="Career Goals"
+          options={careerOptions}
+          selected={formData.career_goals}
+          category="career_goals"
+          icon={<FaBriefcase />}
+        />
+
+        <button type="submit" disabled={loading} className="submit-button">
+          {loading ? (
+            <div className="loading-spinner">
+              <svg className="spinner" viewBox="0 0 50 50">
+                <circle
+                  cx="25"
+                  cy="25"
+                  r="20"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="5"
+                ></circle>
+              </svg>
+              <span>Getting Recommendations...</span>
             </div>
-
-            <div className="form-group">
-              <label htmlFor="skills">Technical Skills</label>
-              <select
-                id="skills"
-                multiple
-                value={formData.skills}
-                onChange={(e) => handleMultiSelectChange(e, 'skills')}
-                className="multi-select"
-                required
-              >
-                {options.skills.map(skill => (
-                  <option key={skill} value={skill}>
-                    {skill}
-                  </option>
-                ))}
-              </select>
-              <small className="text-gray-500">Hold Ctrl/Cmd to select multiple skills</small>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="area_of_interest">Areas of Interest</label>
-              <select
-                id="area_of_interest"
-                multiple
-                value={formData.area_of_interest}
-                onChange={(e) => handleMultiSelectChange(e, 'area_of_interest')}
-                className="multi-select"
-                required
-              >
-                {options.interests.map(interest => (
-                  <option key={interest} value={interest}>
-                    {interest}
-                  </option>
-                ))}
-              </select>
-              <small className="text-gray-500">Hold Ctrl/Cmd to select multiple interests</small>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="future_career_paths">Future Career Paths</label>
-              <select
-                id="future_career_paths"
-                multiple
-                value={formData.future_career_paths}
-                onChange={(e) => handleMultiSelectChange(e, 'future_career_paths')}
-                className="multi-select"
-                required
-              >
-                {options.careers.map(career => (
-                  <option key={career} value={career}>
-                    {career}
-                  </option>
-                ))}
-              </select>
-              <small className="text-gray-500">Hold Ctrl/Cmd to select multiple career paths</small>
-            </div>
-
-            <button type="submit" className="submit-button" disabled={loading}>
-              {loading ? 'Getting Suggestions...' : 'Get Suggestions'}
-              {!loading && <FaArrowRight className="ml-2" />}
-            </button>
-          </form>
-
-          {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-              {error}
-            </div>
+          ) : (
+            "Get Recommendations"
           )}
+        </button>
+      </form>
 
-          <div className="suggestions-section">
-            {suggestions ? (
-              <>
-                <h2>Recommended Electives</h2>
-                <div className="suggestions-grid">
-                  <SuggestionCard suggestion={suggestions} />
+      {error && (
+        <div className="error-message">
+          <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+            <path
+              fillRule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+              clipRule="evenodd"
+            />
+          </svg>
+          <span>{error}</span>
+        </div>
+      )}
+
+      {recommendations && (
+        <div className="recommendations-section">
+          <h3 className="recommendations-header">Recommended Courses</h3>
+          <div className="recommendations-grid">
+            {recommendations.recommendations.map((rec) => (
+              <div key={rec.course_id} className="recommendation-card">
+                <div className="recommendation-header">
+                  <h4 className="course-title">{rec.title}</h4>
+                  {/* <span className="match-score">{rec.match_score}% Match</span> */}
                 </div>
-              </>
-            ) : !loading && !error && (
-              <div className="no-suggestions">
-                Select your preferences to get elective suggestions
+                <p className="course-description">{rec.description}</p>
+                <p className="course-explanation">{rec.explanation}</p>
+                <div className="keywords-container">
+                  {rec.keywords.map((keyword) => (
+                    <span key={keyword} className="keyword-tag">
+                      {keyword}
+                    </span>
+                  ))}
+                </div>
               </div>
-            )}
+            ))}
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
 
-export default ElectiveSuggestion; 
+export default ElectiveSuggestion;

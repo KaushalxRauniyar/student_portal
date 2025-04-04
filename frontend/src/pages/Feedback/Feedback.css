@@ -1,8 +1,8 @@
 .pooja {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center items horizontally */
-    justify-content: center; /* Center content vertically */
+    align-items: center; 
+    justify-content: center; 
     width: 100%;
     max-width: 400px;
     background-color: #ffffff;
@@ -10,19 +10,17 @@
     border-radius: 10px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     border: 2px solid #00bcd4;
-    margin: auto; /* Auto margins help center in a flexible container */
+    margin-left: 400px;
   
   
-  /* If you want full height inside a sidebar */
   .sidebar-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%; /* Full height of the sidebar */
+    height: 100%; 
   }
-  
-  /* Header */
+
   h2 {
     text-align: center;
     font-size: 24px;
@@ -31,8 +29,7 @@
     text-transform: uppercase;
     margin-bottom: 15px;
   }
-  
-  /* Labels */
+
   label {
     display: block;
     font-size: 14px;
@@ -41,7 +38,6 @@
     font-weight: 500;
   }
   
-  /* Input Fields */
   input[type="text"],
   input[type="email"],
   textarea {
@@ -62,14 +58,12 @@
     outline: none;
   }
   
-  /* Textarea */
   textarea {
     height: 120px;
     resize: vertical;
     padding-top: 8px;
   }
   
-  /* Submit Button */
   .submit-btn {
     width: 100%;
     padding: 12px;
@@ -88,8 +82,7 @@
     background-color: #f50057;
     transform: translateY(-2px);
   }
-  
-  /* Thank You Message Animation */
+
   .thank-you-message {
     text-align: center;
     font-size: 18px;

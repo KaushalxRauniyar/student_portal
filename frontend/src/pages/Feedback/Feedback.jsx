@@ -30,7 +30,9 @@ if(data.success)
   };
 
   return (
-    <div className="feedback-container pooja">
+    <div className='bg-slate-900 h-screen w-screen'>
+
+    <div className="feedback-container pooja bg-[#48A6A7]">
       <h2>Feedback Form</h2>
       {submitted ? (
         <div className="thank-you-message">
@@ -46,7 +48,7 @@ if(data.success)
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-            />
+              />
           </div>
           <div>
             <label>Email:</label>
@@ -55,7 +57,7 @@ if(data.success)
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-            />
+              />
           </div>
           <div>
             <label>Message:</label>
@@ -63,7 +65,7 @@ if(data.success)
               value={text}
               onChange={(e) => settext(e.target.value)}
               required
-            />
+              />
           </div>
           <button type="submit" className="submit-btn">
             Submit Feedback
@@ -71,6 +73,7 @@ if(data.success)
         </form>
       )}
     </div>
+      </div>
   );
 };
 
