@@ -12,7 +12,7 @@ import {
   FaComments,
   FaChartLine,
 } from "react-icons/fa";
-import "./sidebar.css";
+import "./Sidebar.css";
 
 const Sidebar = () => {
   const navItems = [
