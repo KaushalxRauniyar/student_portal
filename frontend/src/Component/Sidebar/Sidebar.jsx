@@ -12,7 +12,7 @@ import {
   FaComments,
   FaChartLine,
 } from "react-icons/fa";
-import "./sidebar.css";
+import "./Sidebar.css";
 
 const Sidebar = () => {
   const navItems = [
@@ -30,7 +30,7 @@ const Sidebar = () => {
     },
     { path: "/scgpa", icon: <FaCalculator />, label: "SGPA Calculator" },
     { path: "/health_status", icon: <FaHeartbeat />, label: "Health Status" },
-    { path: "/book", icon: <FaBook />, label: "Book Suggestion" },
+    { path: "/book", icon: <FaBook />, label: "Books Store" },
     { path: "/test", icon: <FaGamepad />, label: "Test" },
     { path: "/feedback", icon: <FaComments />, label: "Feedback" },
   ];

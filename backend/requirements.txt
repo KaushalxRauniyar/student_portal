@@ -2,10 +2,10 @@ flask
 flask-cors
 pandas
 scikit-learn
-pickle5
-
-pip install -r requirements.txt
 
 
-or 
-pip install flask flask-cors pandas scikit-learn
+# pip install -r requirements.txt
+
+
+# or 
+# pip install flask flask-cors pandas scikit-learn

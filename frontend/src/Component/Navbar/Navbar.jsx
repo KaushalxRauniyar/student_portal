@@ -3,7 +3,6 @@ import './Navbar.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import logo from '../Navbar/log.jpg'
-import Home from '../../pages/Home/Home'
 function Navbar() {
   const navigate= useNavigate()
 const [user,setuser]=useState({})
@@ -17,7 +16,7 @@ const setlogout=()=>{
 
 const getdetail=async()=>{
   try{
-const {data}=await axios.post("http://localhost:3000/api/user/detail",{token})
+const {data}=await axios.post("https://student-backend-delta.vercel.app/api/user/detail",{token})
 if(data.success)
 {
   setuser(data.user)
