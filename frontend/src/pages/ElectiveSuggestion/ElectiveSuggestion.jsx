@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { FaGraduationCap, FaCode, FaHeart, FaBriefcase } from "react-icons/fa";
 import PropTypes from "prop-types";
@@ -97,14 +97,15 @@ const ElectiveSuggestion = () => {
         <div className="section-icon">{icon}</div>
         <h3 className="section-title">{title}</h3>
       </div>
-      <div className="options-grid">
+      <div className="options--grid">
         {options.map((option) => (
           <button
             key={option}
             onClick={() => handleSelect(category, option)}
-            className={`option-button ${
+            className={`option--button ${
               selected.includes(option) ? "selected" : ""
             }`}
+            type="button"
           >
             {option}
           </button>

@@ -56,14 +56,14 @@
   font-weight: 600;
 }
 
-.options-grid {
+.options--grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
   margin-top: 1rem;
 }
 
-.option-button {
+.option--button {
   padding: 0.75rem 1.25rem;
   border-radius: 25px;
   font-size: 0.9rem;
@@ -82,17 +82,17 @@
   justify-content: center;
 }
 
-.option-button:not(.selected) {
+.option--button:not(.selected) {
   background: rgba(255, 255, 255, 0.1);
   color: #ffffff;
 }
 
-.option-button:not(.selected):hover {
+.option--button:not(.selected):hover {
   background: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
 }
 
-.option-button.selected {
+.option--button.selected {
   background: linear-gradient(to right, #3b82f6, #2563eb);
   color: white;
   box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35);
