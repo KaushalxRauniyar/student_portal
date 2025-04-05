@@ -8,7 +8,7 @@ const [user,setuser]=useState({})
 const token=localStorage.getItem("token")
 const getdetail=async()=>{
   try{
-const {data}=await axios.post("http://localhost:3000/api/user/detail",{token})
+const {data}=await axios.post("https://student-backend-delta.vercel.app/api/user/detail",{token})
 if(data.success)
 {
   setuser(data.user)

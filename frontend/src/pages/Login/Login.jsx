@@ -38,7 +38,7 @@ if(image)
     alert("please select an image")
 }
     try{
-const {data}=await axios.post("http://localhost:3000/api/user/signup",formdata)
+const {data}=await axios.post("https://student-backend-delta.vercel.app/api/user/signup",formdata)
 if(data.success)
 {
     settoken(data.token)
@@ -55,7 +55,7 @@ if(data.success)
 }
 else{
     try{
-        const {data}=await axios.post("http://localhost:3000/api/user/login",{email,password})
+        const {data}=await axios.post("https://student-backend-delta.vercel.app/api/user/login",{email,password})
       if(data.success)
       {
         settoken(data.token)

@@ -14,7 +14,7 @@ const Feedback = () => {
       return;
     }
 try{
-const {data}=await axios.post("http://localhost:3000/api/add",{name,email,text})
+const {data}=await axios.post("https://student-backend-delta.vercel.app/api/add",{name,email,text})
 console.log(data);
 if(data.success)
 {
