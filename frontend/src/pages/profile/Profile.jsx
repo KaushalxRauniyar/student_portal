@@ -18,6 +18,8 @@ setuser(response.data)
     }
   }
   
+  console.log(user);
+  
 
 
   return (
@@ -57,7 +59,6 @@ setuser(response.data)
 </div>
 
 </div>
-
 
 }
 </div>
