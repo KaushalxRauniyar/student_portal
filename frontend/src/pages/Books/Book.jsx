@@ -13,7 +13,7 @@ function Book() {
     try {
       setLoading(true);
       setError(null);
-      const response = await fetch(`https://backend-r6wa.onrender.com/books/${encodeURIComponent(domain)}`);
+      const response = await fetch(`https://books-and-quiz-backend-api.onrender.com/books/${encodeURIComponent(domain)}`);
       
       if (!response.ok) {
         throw new Error('Failed to fetch books');

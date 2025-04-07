@@ -62,7 +62,7 @@ function Test() {
       setError(null);
       setSelectedDomain(domain);
       const response = await fetch(
-        `https://backend-r6wa.onrender.com/quizs/${encodeURIComponent(domain)}`
+        `https://books-and-quiz-backend-api.onrender.com/quizs/${encodeURIComponent(domain)}`
       );
 
       if (!response.ok) {
