@@ -24,7 +24,7 @@ import GradePrediction from "./pages/GradePrediction/GradePrediction";
 
 function App() {
   const navigate = useNavigate();
-  const [token, settoken] = useState(localStorage.getItem("token") || "");
+  const [token, settoken] = useState(localStorage.getItem("token") || "nistha");
   // useEffect(()=>{
   //   if(token)
   //     {
