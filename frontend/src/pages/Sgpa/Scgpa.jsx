@@ -18,7 +18,7 @@ function Scgpa() {
         <select  onChange={(e)=>setsem(e.target.value)}>
           <option value="">Select Your Semester</option>
           <option value="1">1st</option>
-          <option value="2">2Nd</option>
+          <option value="2">2nd</option>
           <option value="3">3rd</option>
           <option value="4">4th</option>
           <option value="5">5th</option>
