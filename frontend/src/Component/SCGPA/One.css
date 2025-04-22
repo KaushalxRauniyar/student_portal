@@ -1,0 +1,56 @@
+.one{
+    padding: 40px;
+.contain{
+    margin-top: auto;
+    border-radius: 12px;
+    width: 40%;
+    margin-left: -100px;
+    padding: 15px;
+
+    .arrow{
+        padding: 6px;
+        background-color: white;
+    }
+
+    .btn{
+        padding: 12px;
+        border-radius: 12px;
+        background-color: black;
+
+        color: white;
+        font-size: 22px;
+        font-weight: 600;
+        margin-top: 20px;
+        width: 50%;
+       margin-left: 60px;
+    }
+    .btn:hover{
+        background-color: rgb(213, 54, 26);
+
+        color: white;
+    }
+
+    .xob{
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 12px;
+h2{
+    font-size: 18px;
+    font-weight: 600;
+}
+p{
+    font-size: 12px;
+}
+
+    .sel{
+        padding: 10px;
+        border: 2px solid white;
+        border-radius: 12px;
+        background: #000;
+        color: white;
+        outline: none;
+    }
+    }
+}
+    
+}

@@ -1,0 +1,109 @@
+
+class User {
+  -userId: String
+  -name: String
+  -email: String
+  -rollNo: String
+  -program: String
+  +login()
+  +logout()
+  +getProfile()
+}
+
+class Course {
+  -courseId: String
+  -title: String
+  -description: String
+  -credits: Number
+  -skills: List
+  -prerequisites: List
+  +getDetails()
+}
+
+class ElectiveRecommender {
+  -selectedCourses: List
+  -skills: List
+  -interests: List
+  -careerGoals: List
+  +getRecommendations()
+}
+
+class GradePredictor {
+  -academicHistory: Map
+  -currentSGPA: Number
+  +predictNextGrade()
+}
+
+class SGPACalculator {
+  -semester: Number
+  -courses: List
+  -grades: Map
+  +calculate()
+}
+
+' Frontend component relationships
+app --> navbar
+app --> sidebar
+app --> footer
+app --> layout
+
+app --> home
+app --> login
+app --> profile
+app --> elective
+app --> prediction
+app --> sgpa
+app --> health
+app --> book
+app --> test
+app --> games
+app --> feedback
+
+sgpa --> sem1
+sgpa --> sem2
+sgpa --> sem3
+sgpa --> sem4
+sgpa --> sem5
+sgpa --> sem6
+sgpa --> sem7
+sgpa --> sem8
+
+' Backend relationships
+auth --> userModel
+sgpaService --> gradeModel
+recService --> courseModel
+recService --> recModel
+predService --> gradeModel
+
+' Frontend to Backend communication
+Frontend --> Backend : "HTTP/API Calls"
+
+' Page to functionality relationships
+home ..> User
+profile ..> User
+elective ..> ElectiveRecommender
+prediction ..> GradePredictor
+sgpa ..> SGPACalculator
+
+' Add explanatory notes
+note right of User
+  Manages student authentication
+  and profile information
+end note
+
+note right of ElectiveRecommender
+  Recommends elective courses based on
+  student preferences and career goals
+end note
+
+note right of GradePredictor
+  Predicts future grades based on
+  historical performance
+end note
+
+note bottom of Backend
+  Provides data processing,
+  storage, and API services
+end note
+'created by Nistha Panjiyar
+@enduml

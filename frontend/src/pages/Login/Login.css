@@ -1,0 +1,70 @@
+.login-kau{
+padding: 10px;
+
+
+
+.state{
+    font-size: 25px;
+    font-weight: 600;
+    padding: 10px;
+    color: rgb(46, 84, 84);
+    text-decoration: underline;
+}
+
+.box{
+    padding: 10px;
+    border-radius: 12px;
+
+}
+.img-box
+{
+    padding: 15px;
+    margin-left: 40px;
+label{
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(27, 56, 201);
+}
+}
+
+.inp-box{
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+
+    label{
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+input{
+    border: 1px solid gray;
+    padding: 5px;
+   
+    border-radius: 12px;
+    outline: none;
+}
+
+}
+
+
+.img{
+    display: flex;
+    margin: auto;
+    border-radius: 50%;
+}
+
+button{
+    padding: 6px;
+    border-radius: 12px;
+    font-weight: 400;
+    font-size: 20px;
+    margin-top: 10px;
+    background-color: tomato;
+    color: white;
+    margin-bottom: 10px;
+/* kk */
+}
+
+
+}

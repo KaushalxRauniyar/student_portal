@@ -1,0 +1,8 @@
+.navv{
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 12px;
+    font-size: 18px;
+    margin: 4px;
+}
