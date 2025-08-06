@@ -28,7 +28,7 @@ console.log(ans);
      </div>
 <div className='flex justify-center items-center'>
 
-  <h1 className='text-xl font-bold'>8th Semister Calculator</h1>
+  <h1 className='text-xl font-bold'>8th Semester Calculator</h1>
 </div>
      <div className='flex xob overflow-auto justify-between items-center gap-20 border'>
       <div>
