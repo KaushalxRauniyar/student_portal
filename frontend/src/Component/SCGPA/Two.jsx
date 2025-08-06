@@ -32,7 +32,7 @@ const navigate=useNavigate()
      </div>
 <div className='flex justify-center items-center'>
 
-  <h1 className='text-xl font-bold'>2nd Semister Calculator</h1>
+  <h1 className='text-xl font-bold'>2nd Semester Calculator</h1>
 </div>
      <div className='flex xob overflow-auto justify-between items-center gap-20 border'>
       <div>
